@@ -11,21 +11,27 @@ public static class InputComponentsLookup {
     public const int BurstMode = 0;
     public const int BurstModeListener = 1;
     public const int BurstModeRemovedListener = 2;
-    public const int Input = 3;
+    public const int Collision = 3;
+    public const int PressPoint = 4;
+    public const int Time = 5;
 
-    public const int TotalComponents = 4;
+    public const int TotalComponents = 6;
 
     public static readonly string[] componentNames = {
         "BurstMode",
         "BurstModeListener",
         "BurstModeRemovedListener",
-        "Input"
+        "Collision",
+        "PressPoint",
+        "Time"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(BurstModeComponent),
         typeof(BurstModeListenerComponent),
         typeof(BurstModeRemovedListenerComponent),
-        typeof(InputComponent)
+        typeof(CollisionComponent),
+        typeof(PressPointComponent),
+        typeof(TimeComponent)
     };
 }

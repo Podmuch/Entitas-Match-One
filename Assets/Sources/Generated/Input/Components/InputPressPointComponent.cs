@@ -8,27 +8,27 @@
 //------------------------------------------------------------------------------
 public partial class InputEntity {
 
-    public InputComponent input { get { return (InputComponent)GetComponent(InputComponentsLookup.Input); } }
-    public bool hasInput { get { return HasComponent(InputComponentsLookup.Input); } }
+    public PressPointComponent pressPoint { get { return (PressPointComponent)GetComponent(InputComponentsLookup.PressPoint); } }
+    public bool hasPressPoint { get { return HasComponent(InputComponentsLookup.PressPoint); } }
 
-    public void AddInput(int newX, int newY) {
-        var index = InputComponentsLookup.Input;
-        var component = CreateComponent<InputComponent>(index);
+    public void AddPressPoint(int newX, int newY) {
+        var index = InputComponentsLookup.PressPoint;
+        var component = CreateComponent<PressPointComponent>(index);
         component.x = newX;
         component.y = newY;
         AddComponent(index, component);
     }
 
-    public void ReplaceInput(int newX, int newY) {
-        var index = InputComponentsLookup.Input;
-        var component = CreateComponent<InputComponent>(index);
+    public void ReplacePressPoint(int newX, int newY) {
+        var index = InputComponentsLookup.PressPoint;
+        var component = CreateComponent<PressPointComponent>(index);
         component.x = newX;
         component.y = newY;
         ReplaceComponent(index, component);
     }
 
-    public void RemoveInput() {
-        RemoveComponent(InputComponentsLookup.Input);
+    public void RemovePressPoint() {
+        RemoveComponent(InputComponentsLookup.PressPoint);
     }
 }
 
@@ -42,17 +42,17 @@ public partial class InputEntity {
 //------------------------------------------------------------------------------
 public sealed partial class InputMatcher {
 
-    static Entitas.IMatcher<InputEntity> _matcherInput;
+    static Entitas.IMatcher<InputEntity> _matcherPressPoint;
 
-    public static Entitas.IMatcher<InputEntity> Input {
+    public static Entitas.IMatcher<InputEntity> PressPoint {
         get {
-            if (_matcherInput == null) {
-                var matcher = (Entitas.Matcher<InputEntity>)Entitas.Matcher<InputEntity>.AllOf(InputComponentsLookup.Input);
+            if (_matcherPressPoint == null) {
+                var matcher = (Entitas.Matcher<InputEntity>)Entitas.Matcher<InputEntity>.AllOf(InputComponentsLookup.PressPoint);
                 matcher.componentNames = InputComponentsLookup.componentNames;
-                _matcherInput = matcher;
+                _matcherPressPoint = matcher;
             }
 
-            return _matcherInput;
+            return _matcherPressPoint;
         }
     }
 }

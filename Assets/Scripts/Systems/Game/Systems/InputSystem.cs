@@ -10,20 +10,20 @@ public sealed class InputSystem : ReactiveSystem<InputEntity>, ICleanupSystem {
 
     public InputSystem(Contexts contexts) : base(contexts.input) {
         _contexts = contexts;
-        _input = contexts.input.GetGroup(InputMatcher.Input);
+        _input = contexts.input.GetGroup(InputMatcher.PressPoint);
     }
 
     protected override ICollector<InputEntity> GetTrigger(IContext<InputEntity> context) {
-        return context.CreateCollector(InputMatcher.Input);
+        return context.CreateCollector(InputMatcher.PressPoint);
     }
 
     protected override bool Filter(InputEntity entity) {
-        return entity.hasInput;
+        return entity.hasPressPoint;
     }
 
     protected override void Execute(List<InputEntity> entities) {
         var inputEntity = entities.SingleEntity();
-        var input = inputEntity.input;
+        var input = inputEntity.pressPoint;
 
         foreach (var e in _contexts.game.GetEntitiesWithPosition(new IntVector2(input.x, input.y)).Where(e => e.isInteractive)) {
             e.isDestroyed = true;
